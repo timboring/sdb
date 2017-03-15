@@ -8,6 +8,7 @@ from models.db import db
 from models.machine import Machine
 from models.network import Network
 from resources.machine import MachineResource
+from resources.network import NetworkResource
 
 API_VERSION = 'v1'
 
@@ -22,6 +23,7 @@ db.app = app
 db.create_all()
 
 api.add_resource(MachineResource, '/api/v1/machines', '/api/v1/machines/<int:machine_id>')
+api.add_resource(NetworkResource, '/api/v1/networks', '/api/v1/networks/<int:network_id>')
 
 
 @app.route("/")
