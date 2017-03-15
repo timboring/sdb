@@ -4,6 +4,7 @@ from sqlalchemy.dialects import postgresql
 
 from operating_systems import OperatingSystems
 from db import db
+from db import machine_services
 
 
 class Machine(db.Model):
@@ -20,7 +21,11 @@ class Machine(db.Model):
     cores = db.Column(db.Integer)
     manufacturer = db.Column(db.String)
     model = db.Column(db.String)
-
+    machine_services = db.relationship(
+        'Service',
+        secondary=machine_services,
+        backref='machines',
+        cascade='save-update, merge, delete')
 
     def __init__(self, hostname, **kwargs):
         self.hostname = hostname
