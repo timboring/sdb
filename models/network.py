@@ -34,6 +34,9 @@ class Network(db.Model):
 
         self.type = type
         self.cidr = cidr
+        self.total_addresses = kwargs.get('total_addresses')
+        self.used_addresses = kwargs.get('used_addresses')
+        self.gateway = kwargs.get('gateway')
         self.created_at = datetime.utcnow()
         self.updated_at = datetime.utcnow()
 
