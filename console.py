@@ -5,6 +5,7 @@ from pprint import pprint
 
 from models.machine import Machine
 from models.network import Network
+from models.service import Service
 from models.db import db
 
 from api import app
@@ -18,7 +19,8 @@ def make_shell_context():
         pprint=pprint,
         gq=get_debug_queries,
         Machine=Machine,
-        Network=Network
+        Network=Network,
+	Service=Service
     )
 
 manager.add_command('shell', Shell(make_context=make_shell_context))
