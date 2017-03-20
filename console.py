@@ -7,6 +7,7 @@ from models.machine import Machine
 from models.network import Network
 from models.service import Service
 from models.db import db
+import client
 
 from api import app
 
@@ -20,7 +21,8 @@ def make_shell_context():
         gq=get_debug_queries,
         Machine=Machine,
         Network=Network,
-	Service=Service
+	    Service=Service,
+        client=client
     )
 
 manager.add_command('shell', Shell(make_context=make_shell_context))
