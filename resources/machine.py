@@ -8,7 +8,12 @@ from models.db import db
 class MachineResource(Resource):
 
     def get(self, machine_id=None):
-        if machine_id:
+        service_name = request.args.get('service')
+        if service_name:
+            data = Machine.query.filter(
+                Machine.services.any(name='dummy-service')).all()
+            data = [machine.hostname for machine in data]
+        elif machine_id:
             data = Machine.query.filter_by(machine_id=machine_id).first()
             data = data.to_dict()
         else:

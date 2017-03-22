@@ -17,7 +17,11 @@ class MachineDoesNotExistError(Error):
 class ServiceResource(Resource):
 
     def get(self, service_id=None):
-        if service_id:
+        service_name = request.args.get('service')
+        if service_name:
+            data = Service.query.filter_by(name=name).first()
+            data = data.to_dict()
+        elif service_id:
             data = Service.query.filter_by(service_id=service_id).first()
             data = data.to_dict()
         else:
