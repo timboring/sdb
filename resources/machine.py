@@ -3,6 +3,7 @@ from flask import request
 from flask_restful import Resource
 from models.machine import Machine
 from models.db import db
+import pdb
 
 
 class MachineResource(Resource):

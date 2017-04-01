@@ -40,12 +40,11 @@ class Machine(db.Model):
         self.model = kwargs.get('model')
 
     def to_dict(self):
-        machine = {
-            'machine_id': self.machine_id,
-            'hostname': self.hostname,
-            'ip_addresses': self.ip_addresses,
-            'net_interfaces': self.net_interfaces,
-            'services': [s.name for s in self.machine_services]
+        return dict(
+            machine_id=self.machine_id,
+            hostname=self.hostname,
+            ip_addresses=self.ip_addresses,
+            net_interfaces=self.net_interfaces,
+            services=[s.name for s in self.machine_services]
 
-        }
-        return machine
+        )

@@ -7,24 +7,24 @@ machine_uri = 'http://localhost/api/v1/machines'
 service_uri = 'http://localhost/api/v1/services'
 
 
-# Create 1000 machines
-#created = 0
-#host_prefix = 'test-machine-%s.example.com'
-#
-#count = 1
-#while count <= 1000:
-#    r = requests.post(
-#        'http://localhost:5000/api/v1/machines',
-#        json = {
-#            'hostname': host_prefix % count,
-#            'disk': 100,
-#            'ram': 1024,
-#            'cores': 24
-#        })
-#    count += 1
-#    if (count % 10) == 0:
-#        print 'Sleeping for 1 second'
-#        time.sleep(1)
+#Create 1000 machines
+created = 0
+host_prefix = 'test-machine-%s.example.com'
+
+count = 1
+while count <= 1000:
+    r = requests.post(
+        'http://localhost:5000/api/v1/machines',
+        json = {
+            'hostname': host_prefix % count,
+            'disk': 100,
+            'ram': 1024,
+            'cores': 24
+        })
+    count += 1
+    if (count % 100) == 0:
+        print 'Sleeping for 1 second'
+        time.sleep(1)
 
 
 # Create 20 services
@@ -43,5 +43,3 @@ while count <= 10:
             'machines': machines
         })
     count += 1
-
-

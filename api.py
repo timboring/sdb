@@ -29,10 +29,5 @@ api.add_resource(NetworkResource, '/api/v1/networks', '/api/v1/networks/<int:net
 api.add_resource(ServiceResource, '/api/v1/services', '/api/v1/services/<int:service_id>')
 
 
-@app.route("/")
-def index():
-    return 'hello'
-
-
 if __name__ == '__main__':
     app.run()
