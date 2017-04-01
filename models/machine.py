@@ -24,8 +24,8 @@ class Machine(db.Model):
     machine_services = db.relationship(
         'Service',
         secondary=machine_services,
-        backref='machines',
-        cascade='save-update, merge, delete')
+        backref=db.backref('machines', cascade='all'),
+        cascade='save-update, merge')
 
     def __init__(self, hostname, **kwargs):
         self.hostname = hostname

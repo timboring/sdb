@@ -16,8 +16,8 @@ class Service(db.Model):
     machine_services = db.relationship(
         'Machine',
         secondary=machine_services,
-        backref='services',
-        cascade='save-update, merge, delete')
+        backref=db.backref('services', cascade='all'),
+        cascade='save-update, merge')
 
     def __init__(self, name, machines=None, **kwargs):
         self.name = name

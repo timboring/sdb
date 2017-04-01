@@ -27,5 +27,11 @@ class NetworkResource(Resource):
         response.status_code = 201
         return response
 
-    def delete(self):
-        pass
+    def delete(self, network_id):
+        if network_id:
+            network = Network.query.filter_by(network_id=network_id).first()
+            db.session.delete(network)
+            db.session.commit()
+        response = jsonify({})
+        response.status_code = 201
+        return response

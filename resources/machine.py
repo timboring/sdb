@@ -33,5 +33,13 @@ class MachineResource(Resource):
         response.status_code = 201
         return response
 
-    def delete(self):
-        pass
+    def delete(self, machine_id):
+        if machine_id:
+            machine = Machine.query.filter_by(machine_id=machine_id).first()
+            machine.services = []
+            db.session.commit()
+            db.session.delete(machine)
+            db.session.commit()
+        response = jsonify({})
+        response.status_code = 201
+        return response
