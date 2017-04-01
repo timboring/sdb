@@ -11,7 +11,7 @@ class MachineResource(Resource):
         service_name = request.args.get('service')
         if service_name:
             data = Machine.query.filter(
-                Machine.services.any(name='dummy-service')).all()
+                Machine.services.any(name=service_name)).all()
             data = [machine.hostname for machine in data]
         elif machine_id:
             data = Machine.query.filter_by(machine_id=machine_id).first()
