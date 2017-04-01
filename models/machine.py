@@ -45,6 +45,8 @@ class Machine(db.Model):
             hostname=self.hostname,
             ip_addresses=self.ip_addresses,
             net_interfaces=self.net_interfaces,
+            disk=self.disk,
+            ram=self.ram,
+            cores=self.cores,
             services=[s.name for s in self.machine_services]
-
         )
