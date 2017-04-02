@@ -49,14 +49,10 @@ class TestMachineModel(BaseTest):
         self.assertEqual(TEST_MACHINE, mach.to_dict())
 
 
-class TestMachineResource(BaseTest):
-    pass
-
-
 class TestServiceModel(BaseTest):
 
     def setUp(self):
-        super(TestService, self).setUp()
+        super(TestServiceModel, self).setUp()
         self.machine1 = Machine('foo1.example.com')
         self.machine2 = Machine('foo2.example.com')
 
