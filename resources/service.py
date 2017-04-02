@@ -14,6 +14,10 @@ class MachineDoesNotExistError(Error):
     pass
 
 
+class MachinesCannotBeNoneError(Error):
+    pass
+
+
 class ServiceResource(Resource):
 
     def get(self, service_id=None):
@@ -46,6 +50,9 @@ class ServiceResource(Resource):
         machine_list = data.get('machines')
         if machine_list:
             machines = self._get_machines(machine_list)
+        else:
+            raise MachinesCannotBeNoneError(
+                'A service must have 1 or more machines.')
         service = Service(**data)
         for machine in machines:
             service.machines.append(machine)

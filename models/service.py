@@ -21,6 +21,7 @@ class Service(db.Model):
 
     def __init__(self, name, machines=None, **kwargs):
         self.name = name
+        self.machines = machines
         self.created_at = datetime.utcnow()
         self.updated_at = datetime.utcnow()
         self.cicd_home = kwargs.get('cicd_home')

@@ -30,7 +30,7 @@ class BaseTest(unittest.TestCase):
         db.drop_all()
 
 
-class TestMachine(BaseTest):
+class TestMachineModel(BaseTest):
 
     def test_create_machine(self):
         mach = Machine(
@@ -49,13 +49,31 @@ class TestMachine(BaseTest):
         self.assertEqual(TEST_MACHINE, mach.to_dict())
 
 
-class TestService(BaseTest):
+class TestMachineResource(BaseTest):
+    pass
+
+
+class TestServiceModel(BaseTest):
+
+    def setUp(self):
+        super(TestService, self).setUp()
+        self.machine1 = Machine('foo1.example.com')
+        self.machine2 = Machine('foo2.example.com')
 
     def test_create_service(self):
-        foo_service = Service('foo')
+        foo_service = Service(
+            'foo', machines=[self.machine1, self.machine2]
+        )
         db.session.add(foo_service)
         db.session.commit()
         self.assertEqual(1, foo_service.service_id)
+        self.assertEqual(2, len(foo_service.machines))
+
+    def test_create_service_with_nonexisting_machines(self):
+        self.assertRaises(AttributeError, Service, 'foo', machines=['foo.example.com'])
+
+    def test_create_service_with_no_machines(self):
+        self.assertRaises(TypeError, Service, 'foo')
 
 
 if __name__ == '__main__':
