@@ -1,0 +1,7 @@
+<!doctype html>
+<title>Machines</title>
+<ul>
+{% for machine in machines %}
+    <li>{{ machine.hostname }}</li>
+{% endfor %}
+</ul>
